@@ -1,0 +1,110 @@
+<html>
+<style>
+    input[type=text],
+    select,
+    textarea {
+        width: 50%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        resize: vertical;
+    }
+    
+    .container {
+        border-radius: 5px;
+        padding: 20px;
+        margin-left: 500px;
+    }
+    
+    .col-25 {
+        float: left;
+        width: 25%;
+        margin-top: 6px;
+    }
+    
+    .col-75 {
+        float: left;
+        width: 75%;
+        margin-top: 6px;
+    }
+    /* Clear floats after the columns */
+    
+    .row::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+    /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+    
+    button {
+        background-color: #c2f0df;
+        border: none;
+        color: rgb(12, 14, 14);
+        padding: 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-left: 100px;
+        cursor: pointer;
+    }
+    
+    #btn {
+        border-radius: 12px;
+    }
+    
+    @media screen and (max-width: 600px) {
+        .col-25,
+        .col-75,
+        input[type=submit] {
+            width: 50%;
+            margin-top: 0;
+        }
+    }
+</style>
+
+<body>
+
+
+    <div class="container">
+        <form method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-75">
+                    <select id="country" required name="fromlanguage">
+                        <option value="cl">Choose to translate from Language</option>
+              <option value="en">English</option>
+              <option value="ja">Japanese</option>
+            </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-75">
+                    <textarea onChange="" id="translate" name="translate" placeholder="Enter your text here" rows="5" cols="7"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-75">
+                    <select id="country" required name="tolanguage">
+                        <option value="cl">Choose to translate to Language</option>
+              <option value="en">English</option>
+              <option value="ja">Japanese</option>
+            </select>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <button id="btn" type="submit">Translate</button>
+            </div>
+            <div class="row">
+                <div class="col-75">
+                    <textarea name="textarea" rows="5" cols="7" disabled>{% if translation %}
+                         {{translation}} {% endif%}</textarea>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</body>
+
+</html>
